@@ -1,192 +1,225 @@
-import React from 'react';
-import { AlertCircle, Shield, Sparkles, Compass, Eye, ChevronRight } from 'lucide-react';
+﻿import React from 'react';
+import { AlertCircle, Shield, Sparkles, ChevronRight, Eye, Compass, Flame, HeartHandshake } from 'lucide-react';
 import { ActivePage } from '../../types';
 import { useSoundEffects } from '../../hooks/useSoundEffects';
 
 interface HeroProps {
   setActivePage: (page: ActivePage) => void;
+  onOpenChatbot?: () => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ setActivePage }) => {
+export const Hero: React.FC<HeroProps> = ({ setActivePage, onOpenChatbot }) => {
   const { playClick } = useSoundEffects();
 
-  return (
-    <section className="relative min-h-[90vh] flex flex-col items-center justify-center overflow-hidden pt-12 pb-20 px-4 sm:px-6 lg:px-8 border-b border-white/10">
-      {/* Background Ambience & Atmospheric Fog */}
-      <div className="absolute inset-0 bg-[#08090D] pointer-events-none">
-        {/* Subtle grid pattern */}
-        <div className="absolute inset-0 bg-hero-grid bg-[size:48px_48px] opacity-15" />
-        
-        {/* Freya celestial gold/rose glow (left) */}
-        <div className="absolute top-1/4 -left-20 w-[500px] h-[500px] bg-gradient-to-br from-amber-500/15 via-rose-500/10 to-transparent rounded-full blur-[100px]" />
-        
-        {/* Brynhildr tactical steel/crimson glow (right) */}
-        <div className="absolute top-1/4 -right-20 w-[500px] h-[500px] bg-gradient-to-bl from-sky-500/15 via-red-500/10 to-transparent rounded-full blur-[100px]" />
+  const handleRequestHelp = () => {
+    playClick();
+    if (onOpenChatbot) {
+      onOpenChatbot();
+    } else {
+      setActivePage('request');
+    }
+  };
 
-        {/* Midgard skyline silhouette baseline */}
-        <div className="absolute bottom-0 inset-x-0 h-48 bg-gradient-to-t from-[#0D1118] via-transparent to-transparent opacity-90" />
+  return (
+    <section className="relative min-h-[92vh] flex flex-col items-center justify-center overflow-hidden pt-12 pb-24 px-4 sm:px-6 lg:px-8 border-b border-gold-200/80 bg-gradient-to-b from-white via-ivory-50 to-ivory-100">
+      {/* Background Decorative Gold Lines & Rune Patterns */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Subtle grid pattern with gold tint */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(212,175,55,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(212,175,55,0.04)_1px,transparent_1px)] bg-[size:54px_54px]" />
+
+        {/* Soft atmospheric champagne gradients */}
+        <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[750px] h-[500px] bg-gradient-to-b from-gold-100/70 via-champagne-100/40 to-transparent rounded-full blur-[90px]" />
+        <div className="absolute top-1/3 -left-32 w-[450px] h-[450px] bg-gold-200/25 rounded-full blur-[100px]" />
+        <div className="absolute top-1/3 -right-32 w-[450px] h-[450px] bg-champagne-300/30 rounded-full blur-[100px]" />
+
+        {/* Geometric Norse lines */}
+        <svg className="absolute top-12 left-1/2 -translate-x-1/2 w-[1200px] h-[600px] opacity-15 stroke-gold-500" fill="none" viewBox="0 0 1200 600">
+          <circle cx="600" cy="300" r="280" strokeWidth="1" strokeDasharray="6 6" />
+          <circle cx="600" cy="300" r="180" strokeWidth="1.5" />
+          <line x1="100" y1="300" x2="1100" y2="300" strokeWidth="0.8" />
+          <line x1="600" y1="20" x2="600" y2="580" strokeWidth="0.8" />
+          <polygon points="600,120 750,380 450,380" strokeWidth="1" />
+        </svg>
       </div>
 
       {/* Main Hero Container */}
       <div className="relative z-10 max-w-7xl mx-auto w-full">
         {/* System Status Pill */}
-        <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 mb-8 text-[11px] sm:text-xs font-mono">
-          <div className="flex items-center gap-2 bg-[#111722]/80 border border-emerald-500/30 px-3.5 py-1.5 rounded-full text-emerald-400 backdrop-blur shadow-sm">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span>MIDGARD NETWORK OPERATIONAL</span>
+        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 mb-8 text-[11px] sm:text-xs font-mono">
+          <div className="flex items-center gap-2 bg-white/90 border border-gold-300/80 px-4 py-1.5 rounded-full text-charcoal-800 shadow-sm backdrop-blur">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="font-semibold tracking-wider">MIDGARD NETWORK OPERATIONAL</span>
           </div>
-          <div className="flex items-center gap-2 bg-[#111722]/80 border border-amber-500/30 px-3.5 py-1.5 rounded-full text-amber-300 backdrop-blur shadow-sm">
-            <span className="w-2 h-2 rounded-full bg-amber-400" />
-            <span>FREYA AVAILABLE</span>
+          <div className="flex items-center gap-2 bg-white/90 border border-gold-300/80 px-3.5 py-1.5 rounded-full text-gold-900 shadow-sm backdrop-blur">
+            <Sparkles className="w-3.5 h-3.5 text-gold-600" />
+            <span>FREYA ONLINE</span>
           </div>
-          <div className="flex items-center gap-2 bg-[#111722]/80 border border-sky-500/30 px-3.5 py-1.5 rounded-full text-sky-300 backdrop-blur shadow-sm">
-            <span className="w-2 h-2 rounded-full bg-sky-400" />
-            <span>BRYNHILDR AVAILABLE</span>
+          <div className="flex items-center gap-2 bg-white/90 border border-gold-300/80 px-3.5 py-1.5 rounded-full text-charcoal-800 shadow-sm backdrop-blur">
+            <Shield className="w-3.5 h-3.5 text-charcoal-700" />
+            <span>BRYNHILDR STANDING BY</span>
           </div>
         </div>
 
         {/* Central Headlines */}
-        <div className="text-center max-w-4xl mx-auto space-y-5">
-          <div className="inline-block px-4 py-1 rounded border border-cyan-500/20 bg-cyan-500/5 text-cyan-300 font-mono text-xs uppercase tracking-[0.3em]">
-            // REALM INTERFACE DIRECTORY 2026
+        <div className="text-center max-w-4xl mx-auto space-y-6">
+          <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full border border-gold-400/50 bg-gold-50 text-gold-900 font-mono text-xs uppercase tracking-[0.25em] shadow-sm">
+            <span>✦</span>
+            <span>HIGH-READINESS SUPERHERO NETWORK</span>
+            <span>✦</span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black font-cinzel tracking-wider text-white uppercase leading-[1.1]">
+          <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black font-cinzel tracking-wider text-charcoal-950 uppercase leading-[1.05]">
             VALKYRIE
           </h1>
 
-          <div className="text-lg sm:text-2xl font-cinzel font-semibold tracking-[0.25em] text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-slate-100 to-sky-300">
+          <div className="text-lg sm:text-2xl font-cinzel font-semibold tracking-[0.25em] text-gold-700">
             GUARDIANS OF MIDGARD
           </div>
 
-          <p className="text-base sm:text-xl font-display font-medium tracking-wide text-slate-200 max-w-2xl mx-auto leading-relaxed">
-            “WHEN MORTALS CALL, THE VALKYRIES ANSWER.”
+          <p className="text-xl sm:text-2xl font-cinzel font-medium italic tracking-wide text-charcoal-800 max-w-2xl mx-auto">
+            “When mortals call, the Valkyries answer.”
           </p>
 
-          <p className="text-xs sm:text-sm text-slate-400 max-w-xl mx-auto font-sans leading-relaxed">
-            A high-technology fictional emergency response network connecting the citizens of Midgard with their mythological guardians. Dual response capabilities for everyday crises and supernatural realm bleeds.
+          <p className="text-sm sm:text-base text-charcoal-600 max-w-2xl mx-auto font-sans leading-relaxed">
+            An elite emergency response system uniting two mythological guardians. <strong className="text-charcoal-900">Freya</strong> perceives unseen danger through seiðr foresight, while <strong className="text-charcoal-900">Brynhildr</strong> breaks through kinetic threats with impenetrable defense.
           </p>
 
           {/* Primary Action Buttons */}
           <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
             <button
-              onClick={() => { playClick(); setActivePage('request'); }}
-              className="w-full sm:w-auto px-8 py-4 rounded font-mono font-bold text-sm tracking-widest bg-gradient-to-r from-red-600 via-rose-600 to-red-600 hover:from-red-500 hover:to-rose-500 text-white shadow-[0_0_30px_rgba(239,68,68,0.5)] border border-red-400/50 flex items-center justify-center gap-3 transition-all transform hover:-translate-y-0.5 active:translate-y-0"
+              onClick={handleRequestHelp}
+              className="w-full sm:w-auto px-8 py-4 rounded-xl font-mono font-bold text-sm tracking-widest bg-charcoal-900 hover:bg-charcoal-800 text-gold-300 shadow-[0_10px_30px_rgba(20,23,31,0.25)] border-2 border-gold-400 flex items-center justify-center gap-3 transition-all transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
             >
-              <AlertCircle className="w-5 h-5 animate-pulse" />
-              <span>REQUEST EMERGENCY HELP</span>
+              <AlertCircle className="w-5 h-5 text-gold-400 animate-pulse" />
+              <span>REQUEST HELP</span>
             </button>
 
             <button
               onClick={() => { playClick(); setActivePage('valkyries'); }}
-              className="w-full sm:w-auto px-8 py-4 rounded font-mono font-semibold text-sm tracking-widest bg-[#111722]/90 hover:bg-[#161F2E] text-slate-200 hover:text-white border border-white/20 hover:border-cyan-400/50 flex items-center justify-center gap-2 transition-all"
+              className="w-full sm:w-auto px-8 py-4 rounded-xl font-mono font-semibold text-sm tracking-widest bg-white hover:bg-gold-50 text-charcoal-900 hover:text-charcoal-950 border border-gold-300 shadow-sm flex items-center justify-center gap-2 transition-all cursor-pointer"
             >
-              <Shield className="w-4 h-4 text-cyan-400" />
+              <Shield className="w-4 h-4 text-gold-600" />
               <span>MEET THE VALKYRIES</span>
-              <ChevronRight className="w-4 h-4 text-slate-400" />
+              <ChevronRight className="w-4 h-4 text-charcoal-400" />
             </button>
           </div>
         </div>
 
-        {/* Dual Guardian Cinematic Visual Cards */}
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          {/* FREYA CARD */}
-          <div
-            onClick={() => { playClick(); setActivePage('valkyries'); }}
-            className="group cursor-pointer relative bg-gradient-to-br from-[#121622] to-[#0A0D14] border border-amber-500/30 hover:border-amber-400/60 rounded-xl p-6 transition-all duration-300 hover:shadow-[0_0_35px_rgba(229,181,88,0.25)] overflow-hidden"
-          >
-            {/* Top gold ambient shimmer */}
-            <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl pointer-events-none group-hover:bg-amber-500/20 transition-all" />
-            
-            <div className="flex items-start justify-between">
-              <div>
-                <span className="text-[10px] font-mono tracking-widest text-amber-400 uppercase">
-                  GUARDIAN SPEC 01 // INTELLIGENCE & GUIDANCE
-                </span>
-                <h3 className="text-2xl font-black font-cinzel text-white mt-1 group-hover:text-amber-300 transition-colors">
-                  FREYA
-                </h3>
-                <div className="text-xs font-mono text-amber-300/80 tracking-widest">
-                  THE SEER • SEIÐR FORESIGHT
-                </div>
-              </div>
-              <div className="w-10 h-10 rounded-full bg-amber-500/10 border border-amber-500/40 flex items-center justify-center text-amber-300 group-hover:scale-110 transition-transform">
-                <Sparkles className="w-5 h-5" />
-              </div>
+        {/* Dual Valkyrie Guardian Hero Cards with Golden Sigil */}
+        <div className="mt-16 max-w-5xl mx-auto relative">
+          {/* Subtle Glowing Golden Valkyrie Central Symbol */}
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 hidden md:flex flex-col items-center justify-center">
+            <div className="w-16 h-16 rounded-full bg-white border-2 border-gold-400 shadow-[0_0_25px_rgba(212,175,55,0.4)] flex items-center justify-center text-gold-600 animate-gold-glow">
+              <Sparkles className="w-7 h-7 text-gold-500" />
             </div>
-
-            <p className="mt-4 text-xs text-slate-300 leading-relaxed">
-              <strong className="text-amber-200">Freya sees the danger.</strong> Synthesizes prophetic seiðr perception with Midgard telemetry, predicting threats, tracing missing persons, and charting paths to safety.
-            </p>
-
-            <div className="mt-5 grid grid-cols-3 gap-2 text-center text-[11px] font-mono border-t border-white/10 pt-4">
-              <div className="bg-black/30 p-2 rounded border border-white/5">
-                <div className="text-amber-400 font-bold">92%</div>
-                <div className="text-[9px] text-slate-400">FORESIGHT</div>
-              </div>
-              <div className="bg-black/30 p-2 rounded border border-white/5">
-                <div className="text-amber-400 font-bold">96%</div>
-                <div className="text-[9px] text-slate-400">GUIDANCE</div>
-              </div>
-              <div className="bg-black/30 p-2 rounded border border-white/5">
-                <div className="text-amber-400 font-bold">89%</div>
-                <div className="text-[9px] text-slate-400">AEGIS</div>
-              </div>
-            </div>
-
-            <div className="mt-4 flex items-center justify-between text-xs font-mono text-amber-400 group-hover:text-amber-300 pt-1">
-              <span>EXPLORE THREADS OF FATE</span>
-              <Eye className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </div>
+            <span className="mt-1 text-[10px] font-mono font-bold text-gold-800 tracking-widest uppercase bg-white/95 px-2.5 py-0.5 rounded-full border border-gold-300 shadow-sm">
+              VALKYRIE NEXUS
+            </span>
           </div>
 
-          {/* BRYNHILDR CARD */}
-          <div
-            onClick={() => { playClick(); setActivePage('valkyries'); }}
-            className="group cursor-pointer relative bg-gradient-to-br from-[#101726] to-[#0A0D14] border border-sky-500/30 hover:border-sky-400/60 rounded-xl p-6 transition-all duration-300 hover:shadow-[0_0_35px_rgba(56,189,248,0.25)] overflow-hidden"
-          >
-            {/* Top steel-blue ambient shimmer */}
-            <div className="absolute top-0 right-0 w-32 h-32 bg-sky-500/10 rounded-full blur-2xl pointer-events-none group-hover:bg-sky-500/20 transition-all" />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* FREYA GUARDIAN CARD */}
+            <div
+              onClick={() => { playClick(); setActivePage('valkyries'); }}
+              className="group cursor-pointer relative bg-white/90 hover:bg-white border-2 border-gold-300/80 hover:border-gold-500 rounded-3xl p-7 sm:p-8 transition-all duration-300 hover:shadow-[0_15px_40px_rgba(212,175,55,0.18)] overflow-hidden norse-gold-corners"
+            >
+              <div className="absolute top-0 right-0 w-36 h-36 bg-gold-100/60 rounded-full blur-2xl pointer-events-none group-hover:scale-125 transition-transform" />
 
-            <div className="flex items-start justify-between">
-              <div>
-                <span className="text-[10px] font-mono tracking-widest text-sky-400 uppercase">
-                  GUARDIAN SPEC 02 // TACTICAL DEFENSE & RESCUE
-                </span>
-                <h3 className="text-2xl font-black font-cinzel text-white mt-1 group-hover:text-sky-300 transition-colors">
-                  BRYNHILDR
-                </h3>
-                <div className="text-xs font-mono text-sky-300/80 tracking-widest">
-                  THE SHIELD-MAIDEN • IMPENETRABLE DEFENSE
+              <div className="flex items-start justify-between relative z-10">
+                <div>
+                  <span className="text-[10px] font-mono tracking-widest text-gold-700 uppercase font-bold">
+                    GUARDIAN 01 // INTELLIGENCE & GUIDANCE
+                  </span>
+                  <h3 className="text-3xl font-black font-cinzel text-charcoal-950 mt-1 group-hover:text-gold-700 transition-colors">
+                    FREYA
+                  </h3>
+                  <div className="text-xs font-mono text-gold-600 tracking-wider">
+                    THE SEER • SEIÐR FORESIGHT
+                  </div>
+                </div>
+
+                <div className="w-12 h-12 rounded-2xl bg-gold-50 border border-gold-300 flex items-center justify-center text-gold-600 group-hover:scale-110 transition-transform shadow-sm">
+                  <Sparkles className="w-6 h-6 text-gold-500" />
                 </div>
               </div>
-              <div className="w-10 h-10 rounded-full bg-sky-500/10 border border-sky-500/40 flex items-center justify-center text-sky-300 group-hover:scale-110 transition-transform">
-                <Shield className="w-5 h-5" />
+
+              <blockquote className="mt-4 border-l-2 border-gold-400 pl-3 italic text-charcoal-700 text-sm font-sans">
+                “Freya sees the danger.”
+              </blockquote>
+
+              <p className="mt-2 text-xs sm:text-sm text-charcoal-600 leading-relaxed font-sans">
+                Master of seiðr divination and compassionate civilian protection. She deciphers the threads of fate to trace missing persons, anticipate crises before they peak, and illuminate safe escape corridors.
+              </p>
+
+              {/* Powers Pill Badges */}
+              <div className="mt-4 flex flex-wrap gap-1.5 text-[11px] font-mono">
+                <span className="px-2.5 py-1 rounded bg-gold-50 border border-gold-200 text-gold-900">
+                  Fate Perception
+                </span>
+                <span className="px-2.5 py-1 rounded bg-gold-50 border border-gold-200 text-gold-900">
+                  Civilian Guidance
+                </span>
+                <span className="px-2.5 py-1 rounded bg-gold-50 border border-gold-200 text-gold-900">
+                  Brísingamen Shield
+                </span>
+              </div>
+
+              <div className="mt-6 pt-4 border-t border-gold-100 flex items-center justify-between text-xs font-mono text-gold-700 font-semibold group-hover:text-gold-900">
+                <span>EXPLORE FREYA'S ARCHIVE</span>
+                <Eye className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </div>
             </div>
 
-            <p className="mt-4 text-xs text-slate-300 leading-relaxed">
-              <strong className="text-sky-200">Brynhildr faces the danger.</strong> Built for heavy physical containment, active fire breaching, hostage defense, and high-risk extraction in extreme hazard zones.
-            </p>
+            {/* BRYNHILDR GUARDIAN CARD */}
+            <div
+              onClick={() => { playClick(); setActivePage('valkyries'); }}
+              className="group cursor-pointer relative bg-white/90 hover:bg-white border-2 border-gold-300/80 hover:border-gold-500 rounded-3xl p-7 sm:p-8 transition-all duration-300 hover:shadow-[0_15px_40px_rgba(212,175,55,0.18)] overflow-hidden norse-gold-corners"
+            >
+              <div className="absolute top-0 right-0 w-36 h-36 bg-champagne-200/50 rounded-full blur-2xl pointer-events-none group-hover:scale-125 transition-transform" />
 
-            <div className="mt-5 grid grid-cols-3 gap-2 text-center text-[11px] font-mono border-t border-white/10 pt-4">
-              <div className="bg-black/30 p-2 rounded border border-white/5">
-                <div className="text-sky-400 font-bold">97%</div>
-                <div className="text-[9px] text-slate-400">COMBAT</div>
-              </div>
-              <div className="bg-black/30 p-2 rounded border border-white/5">
-                <div className="text-sky-400 font-bold">95%</div>
-                <div className="text-[9px] text-slate-400">DEFENSE</div>
-              </div>
-              <div className="bg-black/30 p-2 rounded border border-white/5">
-                <div className="text-sky-400 font-bold">94%</div>
-                <div className="text-[9px] text-slate-400">RESCUE</div>
-              </div>
-            </div>
+              <div className="flex items-start justify-between relative z-10">
+                <div>
+                  <span className="text-[10px] font-mono tracking-widest text-gold-700 uppercase font-bold">
+                    GUARDIAN 02 // PHYSICAL DEFENSE & RESCUE
+                  </span>
+                  <h3 className="text-3xl font-black font-cinzel text-charcoal-950 mt-1 group-hover:text-gold-700 transition-colors">
+                    BRYNHILDR
+                  </h3>
+                  <div className="text-xs font-mono text-gold-600 tracking-wider">
+                    THE SHIELD • COMBAT DEFENDER
+                  </div>
+                </div>
 
-            <div className="mt-4 flex items-center justify-between text-xs font-mono text-sky-400 group-hover:text-sky-300 pt-1">
-              <span>ACCESS TACTICAL COMMAND</span>
-              <Compass className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <div className="w-12 h-12 rounded-2xl bg-gold-50 border border-gold-300 flex items-center justify-center text-charcoal-800 group-hover:scale-110 transition-transform shadow-sm">
+                  <Shield className="w-6 h-6 text-charcoal-800" />
+                </div>
+              </div>
+
+              <blockquote className="mt-4 border-l-2 border-gold-400 pl-3 italic text-charcoal-700 text-sm font-sans">
+                “Brynhildr faces the danger.”
+              </blockquote>
+
+              <p className="mt-2 text-xs sm:text-sm text-charcoal-600 leading-relaxed font-sans">
+                The vanguard warrior equipped with Svalinn thermal shielding and kinetic breaching lances. Fearless and disciplined, she charges into active fires, collapsed structures, and violent threats to extract endangered civilians.
+              </p>
+
+              {/* Powers Pill Badges */}
+              <div className="mt-4 flex flex-wrap gap-1.5 text-[11px] font-mono">
+                <span className="px-2.5 py-1 rounded bg-gold-50 border border-gold-200 text-charcoal-800">
+                  Combat Mastery
+                </span>
+                <span className="px-2.5 py-1 rounded bg-gold-50 border border-gold-200 text-charcoal-800">
+                  Thermal Svalinn Aegis
+                </span>
+                <span className="px-2.5 py-1 rounded bg-gold-50 border border-gold-200 text-charcoal-800">
+                  Tactical Extraction
+                </span>
+              </div>
+
+              <div className="mt-6 pt-4 border-t border-gold-100 flex items-center justify-between text-xs font-mono text-gold-700 font-semibold group-hover:text-gold-900">
+                <span>VIEW TACTICAL COMMAND</span>
+                <Compass className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </div>
             </div>
           </div>
         </div>

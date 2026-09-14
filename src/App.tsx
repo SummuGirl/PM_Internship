@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { ActivePage, EmergencyCategoryId, EmergencyRequest } from './types';
 import { SEED_REQUESTS } from './data/requests';
 import { useLocalStorage } from './hooks/useLocalStorage';
@@ -7,6 +7,7 @@ import { Navbar } from './components/common/Navbar';
 import { Footer } from './components/common/Footer';
 import { LoadingScreen } from './components/common/LoadingScreen';
 import { CustomCursor } from './components/common/CustomCursor';
+import { ImmediateWelcomeModal } from './components/chatbot/ImmediateWelcomeModal';
 
 // Pages
 import { Home } from './pages/Home';
@@ -19,7 +20,7 @@ import { ValkyriesLorePage } from './pages/ValkyriesLore';
 import { Dashboard } from './pages/Dashboard';
 
 function MainApp() {
-  // Check if session has loaded before
+  // Session loading screen
   const [showLoadingScreen, setShowLoadingScreen] = useState(() => {
     try {
       return sessionStorage.getItem('valkyrie_visited') !== 'true';
@@ -27,6 +28,9 @@ function MainApp() {
       return false;
     }
   });
+
+  // Immediate entry chatbot modal
+  const [isChatbotModalOpen, setIsChatbotModalOpen] = useState(true);
 
   // Active page state with URL hash synchronization
   const [activePage, setActivePage] = useState<ActivePage>(() => {
@@ -96,7 +100,7 @@ function MainApp() {
   };
 
   return (
-    <div className="min-h-screen bg-[#08090D] text-slate-100 flex flex-col selection:bg-cyan-500/30 selection:text-cyan-200">
+    <div className="min-h-screen bg-ivory-100 text-charcoal-900 flex flex-col selection:bg-gold-200 selection:text-charcoal-950">
       {/* Desktop subtle custom cursor */}
       <CustomCursor />
 
@@ -105,10 +109,19 @@ function MainApp() {
         <LoadingScreen onComplete={() => setShowLoadingScreen(false)} />
       )}
 
+      {/* Immediate Entry Chatbot Experience Modal */}
+      <ImmediateWelcomeModal
+        isOpen={isChatbotModalOpen && activePage !== 'request'}
+        onClose={() => setIsChatbotModalOpen(false)}
+        onRequestSubmitted={handleRequestSubmitted}
+        onTrackResponse={handleTrackRequest}
+      />
+
       {/* Sticky Global Navigation */}
       <Navbar
         activePage={activePage}
         setActivePage={navigateToPage}
+        onOpenChatbot={() => setIsChatbotModalOpen(true)}
       />
 
       {/* Main Dynamic View Content */}
@@ -117,6 +130,7 @@ function MainApp() {
           <Home
             setActivePage={navigateToPage}
             onSelectQuickCategory={handleSelectQuickCategory}
+            onOpenChatbot={() => setIsChatbotModalOpen(true)}
           />
         )}
 

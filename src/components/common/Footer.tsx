@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Shield, Sparkles, AlertTriangle, RefreshCw } from 'lucide-react';
 import { ActivePage } from '../../types';
 
@@ -9,44 +9,44 @@ interface FooterProps {
 
 export const Footer: React.FC<FooterProps> = ({ setActivePage, onReplayLoading }) => {
   return (
-    <footer className="w-full bg-[#050608] border-t border-white/10 pt-16 pb-12 text-slate-400 font-sans text-xs">
+    <footer className="w-full bg-white border-t border-gold-200/80 pt-16 pb-12 text-charcoal-600 font-sans text-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
           {/* Brand Col */}
           <div className="md:col-span-2 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="flex items-center justify-center w-8 h-8 rounded bg-cyan-500/10 border border-cyan-400/40 text-cyan-300">
-                <Shield className="w-4 h-4" />
+              <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-gold-50 border border-gold-300 text-gold-600">
+                <Sparkles className="w-5 h-5 text-gold-600" />
               </div>
-              <span className="font-cinzel font-black tracking-[0.25em] text-xl text-white">
+              <span className="font-cinzel font-black tracking-[0.25em] text-2xl text-charcoal-950">
                 VALKYRIE
               </span>
             </div>
-            <p className="text-xs font-mono tracking-widest text-slate-300 uppercase">
+            <p className="text-xs font-mono tracking-widest text-gold-800 uppercase font-bold">
               GUARDIANS OF MIDGARD
             </p>
-            <blockquote className="border-l-2 border-cyan-500/50 pl-3 italic text-slate-300 font-display text-sm">
-              “WHEN MORTALS CALL, THE VALKYRIES ANSWER.”
+            <blockquote className="border-l-2 border-gold-400 pl-3 italic text-charcoal-700 font-cinzel text-sm">
+              “When mortals call, the Valkyries answer.”
             </blockquote>
-            <p className="text-xs text-slate-400 max-w-md leading-relaxed">
-              A high-readiness emergency network connecting the districts of Midgard with guardians Freya and Brynhildr. Combining ancient seiðr foresight with impenetrable kinetic defense.
+            <p className="text-xs text-charcoal-600 max-w-md leading-relaxed font-sans">
+              A high-readiness emergency network connecting the mortals of Midgard with their mythological protectors. Combining ancient seiðr foresight with impenetrable kinetic defense.
             </p>
-            <div className="flex items-center gap-2 pt-2 text-emerald-400 font-mono text-xs">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span>VALKYRIE NETWORK OPERATIONAL // ALL 9 SECTORS GREEN</span>
+            <div className="flex items-center gap-2 pt-2 text-emerald-700 font-mono text-xs">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span>VALKYRIE NETWORK OPERATIONAL // ALL SECTORS GREEN</span>
             </div>
           </div>
 
           {/* Rapid Links */}
-          <div className="space-y-3">
-            <h4 className="text-white font-mono text-xs uppercase tracking-widest font-semibold border-b border-white/10 pb-2">
+          <div className="space-y-3 font-mono">
+            <h4 className="text-charcoal-900 text-xs uppercase tracking-widest font-bold border-b border-gold-200 pb-2">
               PORTAL OPERATIONS
             </h4>
-            <ul className="space-y-2 font-mono text-xs">
+            <ul className="space-y-2 text-xs">
               <li>
                 <button
                   onClick={() => { setActivePage('home'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                  className="hover:text-cyan-300 transition-colors"
+                  className="hover:text-gold-700 transition-colors cursor-pointer"
                 >
                   Home Command
                 </button>
@@ -54,16 +54,16 @@ export const Footer: React.FC<FooterProps> = ({ setActivePage, onReplayLoading }
               <li>
                 <button
                   onClick={() => { setActivePage('request'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                  className="hover:text-red-400 text-red-400/90 font-semibold transition-colors flex items-center gap-1"
+                  className="hover:text-charcoal-950 text-gold-800 font-bold transition-colors flex items-center gap-1 cursor-pointer"
                 >
-                  <span>Request Emergency Help</span>
-                  <span className="text-[10px] bg-red-500/20 px-1 py-0.5 rounded border border-red-500/30">SOS</span>
+                  <span>Request Help (Chatbot)</span>
+                  <span className="text-[10px] bg-gold-100 px-1 py-0.5 rounded border border-gold-300">LIVE</span>
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => { setActivePage('track'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                  className="hover:text-cyan-300 transition-colors"
+                  className="hover:text-gold-700 transition-colors cursor-pointer"
                 >
                   Track Response
                 </button>
@@ -71,7 +71,7 @@ export const Footer: React.FC<FooterProps> = ({ setActivePage, onReplayLoading }
               <li>
                 <button
                   onClick={() => { setActivePage('missions'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                  className="hover:text-cyan-300 transition-colors"
+                  className="hover:text-gold-700 transition-colors cursor-pointer"
                 >
                   Active Missions
                 </button>
@@ -79,7 +79,7 @@ export const Footer: React.FC<FooterProps> = ({ setActivePage, onReplayLoading }
               <li>
                 <button
                   onClick={() => { setActivePage('dashboard'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                  className="hover:text-cyan-300 transition-colors"
+                  className="hover:text-gold-700 transition-colors cursor-pointer"
                 >
                   Citizen Dashboard
                 </button>
@@ -88,15 +88,15 @@ export const Footer: React.FC<FooterProps> = ({ setActivePage, onReplayLoading }
           </div>
 
           {/* Lore & Knowledge Links */}
-          <div className="space-y-3">
-            <h4 className="text-white font-mono text-xs uppercase tracking-widest font-semibold border-b border-white/10 pb-2">
+          <div className="space-y-3 font-mono">
+            <h4 className="text-charcoal-900 text-xs uppercase tracking-widest font-bold border-b border-gold-200 pb-2">
               MYTH & PREPAREDNESS
             </h4>
-            <ul className="space-y-2 font-mono text-xs">
+            <ul className="space-y-2 text-xs">
               <li>
                 <button
                   onClick={() => { setActivePage('realms'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                  className="hover:text-cyan-300 transition-colors"
+                  className="hover:text-gold-700 transition-colors cursor-pointer"
                 >
                   Nine Realms Map
                 </button>
@@ -104,7 +104,7 @@ export const Footer: React.FC<FooterProps> = ({ setActivePage, onReplayLoading }
               <li>
                 <button
                   onClick={() => { setActivePage('safety'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                  className="hover:text-cyan-300 transition-colors"
+                  className="hover:text-gold-700 transition-colors cursor-pointer"
                 >
                   Midgard Safety Center
                 </button>
@@ -112,18 +112,18 @@ export const Footer: React.FC<FooterProps> = ({ setActivePage, onReplayLoading }
               <li>
                 <button
                   onClick={() => { setActivePage('valkyries'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                  className="hover:text-amber-300 transition-colors flex items-center gap-1"
+                  className="hover:text-gold-700 transition-colors flex items-center gap-1 cursor-pointer"
                 >
-                  <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                  <Sparkles className="w-3.5 h-3.5 text-gold-600" />
                   <span>Freya — The Seer</span>
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => { setActivePage('valkyries'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                  className="hover:text-sky-300 transition-colors flex items-center gap-1"
+                  className="hover:text-gold-700 transition-colors flex items-center gap-1 cursor-pointer"
                 >
-                  <Shield className="w-3.5 h-3.5 text-sky-400" />
+                  <Shield className="w-3.5 h-3.5 text-charcoal-700" />
                   <span>Brynhildr — The Shield</span>
                 </button>
               </li>
@@ -131,7 +131,7 @@ export const Footer: React.FC<FooterProps> = ({ setActivePage, onReplayLoading }
                 <li className="pt-2">
                   <button
                     onClick={onReplayLoading}
-                    className="inline-flex items-center gap-1.5 text-[11px] text-cyan-400 hover:text-cyan-200 border border-cyan-500/20 bg-cyan-500/5 px-2.5 py-1 rounded"
+                    className="inline-flex items-center gap-1.5 text-[11px] text-charcoal-600 hover:text-charcoal-900 border border-gold-200 bg-gold-50 px-2.5 py-1 rounded-lg cursor-pointer"
                   >
                     <RefreshCw className="w-3 h-3" />
                     <span>Replay Network Boot</span>
@@ -142,28 +142,28 @@ export const Footer: React.FC<FooterProps> = ({ setActivePage, onReplayLoading }
           </div>
         </div>
 
-        {/* Fictional Disclaimer Alert */}
-        <div className="border border-amber-500/20 bg-amber-500/5 rounded p-4 mb-8 text-xs text-amber-300/80 flex items-start gap-3">
-          <AlertTriangle className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
-          <div>
-            <span className="font-bold text-amber-300 tracking-wider font-mono">
-              IMPORTANT FICTIONAL PROJECT NOTICE:
+        {/* Required Emergency Disclaimer Alert */}
+        <div className="border border-gold-300 bg-gold-50/70 rounded-2xl p-4 sm:p-5 mb-8 text-xs text-charcoal-800 flex items-start gap-3 shadow-sm">
+          <AlertTriangle className="w-5 h-5 text-gold-600 flex-shrink-0 mt-0.5" />
+          <div className="space-y-1">
+            <span className="font-bold text-gold-900 tracking-wider font-mono uppercase">
+              EMERGENCY DISCLAIMER:
             </span>
-            <p className="mt-1 leading-relaxed text-slate-300">
-              VALKYRIE is a fictional modern interpretation inspired by Norse mythology created for an internship selection project. It does not provide real-world emergency dispatch or replace municipal services. In a genuine real-world emergency, dial your local emergency services immediately.
+            <p className="leading-relaxed font-sans text-charcoal-700">
+              VALKYRIE is a fictional superhero demonstration and does not provide real emergency response services. In an actual real-world emergency, please contact your local municipal emergency authorities immediately.
             </p>
           </div>
         </div>
 
         {/* Copyright & Sub-bar */}
-        <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-[11px] text-slate-500">
+        <div className="border-t border-gold-200/80 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-[11px] text-charcoal-500">
           <div>
-            VALKYRIE © 2026 // FICTIONAL INTERACTIVE EXPERIENCE // MIDGARD SECTOR 01
+            VALKYRIE © 2026 // FICTIONAL INTERACTIVE SUPERHERO DEMONSTRATION // MIDGARD SECTOR 01
           </div>
           <div className="flex items-center gap-4">
-            <span>ENGINEERED FOR PRODUCTION-GRADE WEB STANDARDS</span>
+            <span>DESIGNED FOR INTERNSHIP SELECTION TASK</span>
             <span>•</span>
-            <span className="text-cyan-400">ACCESSIBILITY COMPLIANT</span>
+            <span className="text-gold-800 font-semibold">GOLD + WHITE + PREMIUM EDITION</span>
           </div>
         </div>
       </div>

@@ -1,106 +1,126 @@
-@tailwind base;
+﻿@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    color-scheme: dark;
+    color-scheme: light dark;
   }
 
   body {
-    background-color: #08090D;
-    color: #F1F5F9;
-    font-family: 'Inter', system-ui, sans-serif;
+    background-color: #FAF8F5;
+    color: #1A1E26;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
     overflow-x: hidden;
   }
 
-  /* Custom subtle scrollbar */
+  /* Custom subtle gold scrollbar */
   ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
   }
 
   ::-webkit-scrollbar-track {
-    background: #08090D;
+    background: #FAF8F5;
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #1E293B;
+    background: #D4AF37;
     border-radius: 4px;
-    border: 2px solid #08090D;
+    border: 2px solid #FAF8F5;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #334155;
+    background: #B8860B;
   }
 
-  /* Focus ring for accessibility */
+  /* Focus ring with metallic gold */
   *:focus-visible {
-    outline: 2px solid #38BDF8;
+    outline: 2px solid #D4AF37;
     outline-offset: 2px;
   }
 }
 
 @layer components {
-  .glass-panel {
-    background: rgba(17, 23, 34, 0.75);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+  /* Premium Glass Panels */
+  .glass-panel-white {
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    box-shadow: 0 10px 30px -5px rgba(184, 134, 11, 0.06);
   }
 
   .glass-panel-gold {
-    background: rgba(229, 181, 88, 0.04);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(229, 181, 88, 0.2);
+    background: linear-gradient(145deg, rgba(255, 253, 248, 0.95), rgba(247, 241, 230, 0.9));
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    box-shadow: 0 15px 35px -5px rgba(212, 175, 55, 0.12);
   }
 
-  .glass-panel-steel {
-    background: rgba(56, 189, 248, 0.04);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(56, 189, 248, 0.2);
+  .glass-panel-charcoal {
+    background: rgba(20, 23, 31, 0.94);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.3);
   }
 
-  .norse-border {
+  /* Norse Decorative Corner Accents */
+  .norse-gold-corners {
     position: relative;
   }
 
-  .norse-border::before {
+  .norse-gold-corners::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid #D4AF37;
+    border-left: 2px solid #D4AF37;
+    pointer-events: none;
+  }
+
+  .norse-gold-corners::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    width: 10px;
+    height: 10px;
+    border-bottom: 2px solid #D4AF37;
+    border-right: 2px solid #D4AF37;
+    pointer-events: none;
+  }
+
+  .text-gold-gradient {
+    background: linear-gradient(135deg, #B8860B 0%, #D4AF37 50%, #996515 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .gold-shimmer-btn {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .gold-shimmer-btn::after {
     content: '';
     position: absolute;
     top: 0;
-    left: 0;
-    width: 8px;
-    height: 8px;
-    border-top: 2px solid #38BDF8;
-    border-left: 2px solid #38BDF8;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transform: skewX(-20deg);
+    transition: 0.75s;
   }
 
-  .norse-border::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 8px;
-    height: 8px;
-    border-bottom: 2px solid #38BDF8;
-    border-right: 2px solid #38BDF8;
-  }
-
-  .norse-border-gold::before {
-    border-color: #E5B558;
-  }
-
-  .norse-border-gold::after {
-    border-color: #E5B558;
-  }
-
-  .text-glow-freya {
-    text-shadow: 0 0 16px rgba(229, 181, 88, 0.4);
-  }
-
-  .text-glow-bryn {
-    text-shadow: 0 0 16px rgba(56, 189, 248, 0.4);
+  .gold-shimmer-btn:hover::after {
+    left: 140%;
   }
 }
 

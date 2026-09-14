@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: #08090D;
+    color: #F1F5F9;
+    font-family: 'Inter', system-ui, sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* Custom subtle scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #08090D;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #1E293B;
+    border-radius: 4px;
+    border: 2px solid #08090D;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #334155;
+  }
+
+  /* Focus ring for accessibility */
+  *:focus-visible {
+    outline: 2px solid #38BDF8;
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    background: rgba(17, 23, 34, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .glass-panel-gold {
+    background: rgba(229, 181, 88, 0.04);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(229, 181, 88, 0.2);
+  }
+
+  .glass-panel-steel {
+    background: rgba(56, 189, 248, 0.04);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(56, 189, 248, 0.2);
+  }
+
+  .norse-border {
+    position: relative;
+  }
+
+  .norse-border::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    border-top: 2px solid #38BDF8;
+    border-left: 2px solid #38BDF8;
+  }
+
+  .norse-border::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 8px;
+    height: 8px;
+    border-bottom: 2px solid #38BDF8;
+    border-right: 2px solid #38BDF8;
+  }
+
+  .norse-border-gold::before {
+    border-color: #E5B558;
+  }
+
+  .norse-border-gold::after {
+    border-color: #E5B558;
+  }
+
+  .text-glow-freya {
+    text-shadow: 0 0 16px rgba(229, 181, 88, 0.4);
+  }
+
+  .text-glow-bryn {
+    text-shadow: 0 0 16px rgba(56, 189, 248, 0.4);
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

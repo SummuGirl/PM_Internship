@@ -470,10 +470,18 @@ export const ValkyrieChatbot: React.FC<ValkyrieChatbotProps> = ({
         })
       });
 
-      const resData = await response.json();
+      let resData: any = null;
+      try {
+        resData = await response.json();
+      } catch {
+        // response was not JSON
+      }
 
-      if (!response.ok || !resData.success) {
-        throw new Error(resData?.error || 'Failed to dispatch notification email.');
+      if (!response.ok || !resData?.success) {
+        const errorDetail = resData?.details 
+          ? `${resData?.error} [${resData.details}]` 
+          : (resData?.error || 'Failed to dispatch notification email.');
+        throw new Error(errorDetail);
       }
 
       // Success
@@ -503,7 +511,7 @@ export const ValkyrieChatbot: React.FC<ValkyrieChatbotProps> = ({
       setIsTyping(false);
       setStep('ERROR');
       setErrorMessage(
-        'The Valkyrie Network encountered a communication error. Please try again.'
+        err?.message || 'The Valkyrie Network encountered a communication error. Please try again.'
       );
     }
   };

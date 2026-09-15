@@ -1,4 +1,4 @@
-﻿export interface SubmitRequestBody {
+export interface SubmitRequestBody {
   visitorName: string;
   visitorAge: number | string;
   visitorLocation: string;
@@ -47,7 +47,21 @@ export default async function handler(req: any, res: any) {
   }
 
   try {
-    const body: SubmitRequestBody = typeof req.body === 'string' ? JSON.parse(req.body) : req.body || {};
+    let body: any = req.body;
+    if (typeof body === 'string') {
+      try {
+        body = JSON.parse(body);
+      } catch {
+        body = {};
+      }
+    } else if (typeof Buffer !== 'undefined' && Buffer.isBuffer(body)) {
+      try {
+        body = JSON.parse(body.toString('utf-8'));
+      } catch {
+        body = {};
+      }
+    }
+    body = body || {};
 
     const rawName = (body.visitorName || '').trim();
     const rawAge = Number(body.visitorAge);
